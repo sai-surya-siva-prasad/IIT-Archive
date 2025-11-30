@@ -12,9 +12,7 @@ export interface Paper {
 
 export interface YearData {
   year: number;
-  papers: {
-    [key in Subject]?: Paper[];
-  };
+  papers: Paper[];
 }
 
 export interface Book {

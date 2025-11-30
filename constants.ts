@@ -1,9 +1,9 @@
 import { Book, Subject, YearData } from './types';
 
 // Helper function to generate PDF path
-const getPaperPath = (year: number, subject: Subject, paperNum: number): string => {
-  const subjectFolder = subject.toLowerCase();
-  return `/papers/${year}/${subjectFolder}/paper-${paperNum}.pdf`;
+const getPaperPath = (year: number, paperNum: number): string => {
+  // Assuming PDFs are stored as /papers/{year}/paper-{num}.pdf
+  return `/papers/${year}/paper-${paperNum}.pdf`;
 };
 
 // Generate years from 1985 to 2025
@@ -11,20 +11,10 @@ export const YEARS: YearData[] = Array.from({ length: 2025 - 1985 + 1 }, (_, i) 
   const year = 2025 - i;
   return {
     year,
-    papers: {
-      [Subject.PHYSICS]: [
-        { id: `p-${year}-1`, title: `${year} Physics Paper I`, url: getPaperPath(year, Subject.PHYSICS, 1) },
-        { id: `p-${year}-2`, title: `${year} Physics Paper II`, url: getPaperPath(year, Subject.PHYSICS, 2) },
-      ],
-      [Subject.CHEMISTRY]: [
-        { id: `c-${year}-1`, title: `${year} Chemistry Paper I`, url: getPaperPath(year, Subject.CHEMISTRY, 1) },
-        { id: `c-${year}-2`, title: `${year} Chemistry Paper II`, url: getPaperPath(year, Subject.CHEMISTRY, 2) },
-      ],
-      [Subject.MATH]: [
-        { id: `m-${year}-1`, title: `${year} Mathematics Paper I`, url: getPaperPath(year, Subject.MATH, 1) },
-        { id: `m-${year}-2`, title: `${year} Mathematics Paper II`, url: getPaperPath(year, Subject.MATH, 2) },
-      ],
-    }
+    papers: [
+      { id: `${year}-1`, title: `${year} Paper I`, url: getPaperPath(year, 1) },
+      { id: `${year}-2`, title: `${year} Paper II`, url: getPaperPath(year, 2) },
+    ]
   };
 });
 
